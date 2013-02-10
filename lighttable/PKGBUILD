@@ -1,0 +1,35 @@
+# Maintainer: Tony Sokhon <tonyskn@gmail.com>
+# Contributor: Gaurish Sharma <contact@gaurishsharma.com>
+# Contributor: Massimiliano Torromeo <massimiliano.torromeo@gmail.com>
+
+pkgname=lighttable
+pkgver=alpha050213
+pkgrel=3
+pkgdesc="Light Table is a new interactive IDE that lets you modify running programs and embed anything from websites to games."
+url="http://www.lighttable.com/"
+license=('custom')
+depends=(nss libx11 libxrandr libpng)
+options=(!strip)
+arch=('i686' 'x86_64')
+
+source=(lighttable http://temp2.kodowa.com.s3.amazonaws.com/playground/bins/LightTableLinux.tar.gz)
+md5sums=('5c3110a62216b2edd6b50b3b2cb0b4fa' 'ca30c55325c32947672c836ef03936a5')
+
+[ "$CARCH" = "x86_64" ] && {
+  source[1]=http://temp2.kodowa.com.s3.amazonaws.com/playground/bins/LightTableLinux64.tar.gz
+  md5sums[1]='4370da89ca7d3544baa4c7929f9c68af'
+}
+
+package() {
+  install -D -m755 lighttable "$pkgdir/usr/bin/lighttable"
+
+  _destdir="$pkgdir/opt/LightTable"
+
+  install -dm755 $_destdir
+  mv "$srcdir/LightTable/LightTable" $_destdir
+  mv "$srcdir/LightTable/nw.pak" $_destdir
+  mv "$srcdir/LightTable/libffmpegsumo.so" $_destdir
+
+  #for more info, https://github.com/Kodowa/Light-Table-Playground/issues/161
+  ln -s /usr/lib/libudev.so "$_destdir/libudev.so.0"
+}
