@@ -1,27 +1,57 @@
 # Maintainer: Tony Sokhon <tonyskn@gmail.com>
 pkgname=xmonad-gnome3
 pkgver=20130210
-pkgrel=1
-pkgdesc="Installs extra session config files to make GNOME 3 play nicely with xmonad"
+pkgrel=4
+pkgdesc="Minimal XMonad/GNOME3 hybrid desktop configuration"
 arch=('i686' 'x86_64')
-url="http://xmonad.org"
-license=('custom:BSD3')
-depends=(xmonad gnome-session gnome-settings-daemon notification-daemon gnome-screensaver unclutter xorg-xsetroot)
-source=(xmonad.session xmonad-gnome-session.desktop xmonad.desktop xmonad-gnome-screensaver.desktop xmonad-unclutter.desktop xmonad-xsetroot.desktop)
+url="https://github.com/tonyskn/arch-aur-packages/tree/master/xmonad-gnome3"
+license=('MIT')
+
+depends=(xmonad
+         xmonad-contrib
+         xmobar
+         gnome-session
+         gnome-control-center
+         gnome-settings-daemon
+         gnome-themes-standard
+         gnome-screensaver
+         gnome-terminal
+         nautilus
+         file-roller
+         notification-daemon
+         unclutter
+         xorg-xsetroot)
+
+source=(xmonad.session
+        xmonad-gnome-session.desktop
+        xmonad.desktop
+        xmonad-gnome-screensaver.desktop
+        xmonad-unclutter.desktop
+        xmonad-xsetroot.desktop
+        xmonad-sample.hs
+        xinitrc.sample)
+    
 md5sums=('9527196afddae1c3ba82aecd56ad36a6'
          '695f6f550527ea0e53628bbcba6d3f28'
          '0dd8c828a828edddcbc8e94b645e2b4d'
          '5c2d53dbb78e1cc77f2cbde4b6edd519'
          'd21b8a9ef67e0db6d65d74c77dcc447f'
-         '45292e85eec74c9423b326171ac3404b')
+         '45292e85eec74c9423b326171ac3404b'
+         '5edabebeeab222c830ddfa191f7531c4'
+         '9eca40981f1409821012d0133c18452c')
 
 build() {
   cd ${srcdir}
+
+  install -d "${pkgdir}/usr/share/xmonad-gnome3/"
+  install -m644 -t "${pkgdir}/usr/share/xmonad-gnome3/" xmonad-sample.hs xinitrc.sample
+  echo 'To get started, copy /usr/share/xmonad-gnome3/{xinitrc.sample,xmonad-sample.hs} into ~/{.xinitrc,.xmonad/xmonad.hs} then run `startx`'
+
   install -D -m644 xmonad.session "${pkgdir}/usr/share/gnome-session/sessions/xmonad.session"
   install -D -m644 xmonad-gnome-session.desktop "${pkgdir}/usr/share/xsessions/xmonad-gnome-session.desktop"
 
-  install -D -m644 xmonad.desktop "${pkgdir}/usr/share/applications/xmonad.desktop"
-  install -D -m644 xmonad-gnome-screensaver.desktop "${pkgdir}/usr/share/applications/xmonad-gnome-screensaver.desktop"
-  install -D -m644 xmonad-unclutter.desktop "${pkgdir}/usr/share/applications/xmonad-unclutter.desktop"
-  install -D -m644 xmonad-xsetroot.desktop "${pkgdir}/usr/share/applications/xmonad-xsetroot.desktop"
+  install -d "${pkgdir}/usr/share/applications/"
+  install -m644 -t "${pkgdir}/usr/share/applications/" \
+     xmonad.desktop xmonad-gnome-screensaver.desktop \
+     xmonad-unclutter.desktop xmonad-xsetroot.desktop
 }
