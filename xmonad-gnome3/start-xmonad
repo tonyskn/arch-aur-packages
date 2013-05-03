@@ -3,6 +3,11 @@
 # Start GNOME daemons
 /usr/lib/gnome-settings-daemon/gnome-settings-daemon &
 /usr/lib/notification-daemon-1.0/notification-daemon &
+
+/usr/bin/start-pulseaudio-x11 &
+/usr/lib/gnome-settings-daemon/gnome-fallback-media-keys-helper &
+
+/usr/lib/gnome-settings-daemon/gnome-fallback-background-helper &
 gnome-screensaver &
 
 # Start GNOME Keyring
@@ -17,4 +22,4 @@ nm-applet &
 unclutter -idle 1 -jitter 10 -root &
 xsetroot -cursor_name 'left_ptr' &
 
-sleep 1 && xmonad
+sleep 1 && exec xmonad
