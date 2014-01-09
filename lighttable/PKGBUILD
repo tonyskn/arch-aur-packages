@@ -6,7 +6,7 @@
 
 pkgname=lighttable
 pkgver=0.6.0
-pkgrel=1
+pkgrel=2
 pkgdesc="New interactive IDE that lets you modify running programs and embed anything from websites to games."
 url="http://www.lighttable.com/"
 license=('custom')
@@ -17,7 +17,7 @@ arch=('i686' 'x86_64')
 source=(lighttable http://d35ac8ww5dfjyg.cloudfront.net/playground/bins/$pkgver/LightTableLinux.tar.gz lighttable.desktop lighttable.png)
 md5sums=('e772b3547fdc3a6e32f81e7303422fd1'
          '6565f599b7760f0f7dd2d186d9cc6d17'
-         'a454708d725223d577c2d67d08300717'
+         '04a62702b59810a36bca7623bf9e932c'
          'f8c055be2f047ff4aaffdd028f62f027')
 
 if [[ "$CARCH" == "x86_64" ]]; then
