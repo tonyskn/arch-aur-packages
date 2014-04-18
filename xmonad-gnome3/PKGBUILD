@@ -1,7 +1,7 @@
 # Maintainer: Tony Sokhon <tonyskn@gmail.com>
 pkgname=xmonad-gnome3
-pkgver=20131017
-pkgrel=1
+pkgver=20140418
+pkgrel=3
 pkgdesc="Minimal XMonad/GNOME3 hybrid desktop configuration"
 arch=('i686' 'x86_64')
 url="https://github.com/tonyskn/arch-aur-packages/tree/master/xmonad-gnome3"
@@ -11,6 +11,7 @@ depends=(xmonad
          xmonad-contrib
          xmobar
          gnome-session
+         polkit-gnome
          gnome-keyring
          gnome-control-center
          gnome-settings-daemon
@@ -33,10 +34,10 @@ source=(xmonad-gnome-session
         xmonad-gnome-session.desktop
         xmonad-sample.hs
         xinitrc.sample)
-md5sums=('b5340cef473dc7f83c793ac604471cd6'
+md5sums=('ed09ede7eb507ebabb00a82f2f3480df'
          'ce501be68f33c494ddf6a2e96d325734'
-         '452ad4d4a15edcf42cab521ff1926af8'
-         '350a97cea92a2abe94e4e7aec8977f48'
+         'e3e085766feb35df6d426fc4d027fdf9'
+         '3ca3cb08e62d6e94956df23cba8e528d'
          '7fae69b52624cd0d60a05cff428a1222'
          'c926df24e27716feee89d2a934d25a17')
 
@@ -58,4 +59,8 @@ package() {
   # xmonad-gnome GNOME session files
   install -D -m644 xmonad.desktop "${pkgdir}/usr/share/applications/xmonad.desktop"
   install -D -m644 xmonad-gnome.session "${pkgdir}/usr/share/gnome-session/sessions/xmonad-gnome.session"
+
+  # this is required by gnome-settings-daemon-compat
+  install -dm755 "${pkgdir}/usr/lib"
+  ln -s /usr/lib/libgnome-desktop-3.so.10.0.0 "${pkgdir}/usr/lib/libgnome-desktop-3.so.8"
 }
