@@ -1,14 +1,14 @@
 # Maintainer: Tony Sokhon <tonyskn@gmail.com>
 pkgname=xmonad-gnome3
-pkgver=20140421
+pkgver=20140910
 pkgrel=1
 pkgdesc="Minimal XMonad/GNOME3 hybrid desktop configuration"
 arch=('i686' 'x86_64')
 url="https://github.com/tonyskn/arch-aur-packages/tree/master/xmonad-gnome3"
 license=('MIT')
 
-depends=(xmonad
-         xmonad-contrib
+depends=(haskell-xmonad
+         haskell-xmonad-contrib
          xmobar
          xlogin-git
          gnome-session
