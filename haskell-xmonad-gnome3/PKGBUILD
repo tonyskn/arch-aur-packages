@@ -17,7 +17,6 @@ depends=(haskell-xmonad
          gnome-keyring
          gnome-control-center
          gnome-settings-daemon
-         gnome-settings-daemon-compat
          notification-daemon
          gnome-themes-standard
          gnome-screensaver
@@ -37,7 +36,7 @@ source=(xmonad-gnome-session
         xinitrc.sample)
 md5sums=('d5d584c0d6a0a1db8ff62339e85a3beb'
          'ce501be68f33c494ddf6a2e96d325734'
-         'e3e085766feb35df6d426fc4d027fdf9'
+         '6a51cf0ec1d104f37ef849249ca8bb19'
          '757ac47aeab12fe0eae171970277e91b'
          '1e8d213a7ccec97dbc84658d92dddf61'
          'c9600c70ca06ab45f995b56f2e4f8c13')
